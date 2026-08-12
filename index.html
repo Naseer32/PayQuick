@@ -2058,7 +2058,7 @@
       // Fetch every payment in parallel — with 50+ payments, awaiting these
       // one at a time was slow enough to time out. A parallel batch finishes
       // in roughly the time of one call instead of fifty.
-      const payments = await fetchWithLimit(sortedIds, 8, (id) => contract.getPayment(id).then((p) => ({ id, p })));
+      const payments = await fetchWithLimit(sortedIds, 2, (id) => contract.getPayment(id).then((p) => ({ id, p })));
 
       if (payments.length < ids.length) {
         el("historyCount").textContent = payments.length + " of " + ids.length + " loaded";
