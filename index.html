@@ -1175,7 +1175,7 @@
   let statusPollInterval = null;
   let requestIsPaid = false;
 
-  function statusBadgeHtml(status) {
+  function statusBadgeHtml(status, errorMsg) {
     const map = {
       pending: ["Pending", "badge-pending"],
       paid: ["Paid", "badge-paid"],
@@ -1977,7 +1977,7 @@
       const result = await checkRequestStatus(r);
       myReqStatusCache[r.inv] = result;
       const slot = el("myReqStatus-" + i);
-      if (slot) slot.innerHTML = statusBadgeHtml(result.status);
+      if (slot) slot.innerHTML = statusBadgeHtml(result.status, result.error);
     });
   }
 
